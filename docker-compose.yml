@@ -1,0 +1,25 @@
+
+all: 
+    image: allfromrpm_easybuildfoss2015a
+    volumes:
+        - ./export:/export/easybuild
+    #user: easybuild
+    user: root
+
+easybuildfoss2015a: 
+    build: .
+    volumes:
+        - ./export:/export/easybuild
+    #user: easybuild
+    user: root
+
+test:
+    image: allfromrpm_easybuildfoss2015a
+    volumes:
+        - ./export:/export/easybuild
+    user: easybuild
+    environment:
+        #- GITHUB_USER=rjeschmi
+        #- GITHUB_TOKEN=c36b3df473cb0eef52a2c4ef1562a374a290753a
+        - FROM_PR=1444
+        - EB_FILES="--download-timeout=60"

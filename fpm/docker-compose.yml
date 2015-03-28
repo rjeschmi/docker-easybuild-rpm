@@ -1,0 +1,30 @@
+easybuild:
+    image: easybuild-fpm
+    volumes:
+        - ./export:/export/easybuild
+        - ./develop:/software/easybuild-develop
+    user: build
+
+easybuildfoss2015a:
+    image: easybuild-fpm
+    volumes:
+        - ./export:/export/easybuild
+        - ./develop:/software/easybuild-develop
+    user: root 
+    command: su -l -c 'ml load Ruby-FPM && eb --sourcepath=/export/easybuild/sources --download-timeout=60 --prefix=/software/easybuild --package-tool=fpm --package-prefix=easybuild-foss-2015a --packagepath=/export/easybuild/packages foss-2015a.eb -dfr' - build
+
+easybuildgoolf1514:
+    image: easybuild-fpm
+    volumes:
+        - ./export:/export/easybuild
+        - ./develop:/software/easybuild-develop
+    user: root
+    command: su -l -c 'ml load Ruby-FPM && eb --sourcepath=/export/easybuild/sources --download-timeout=60 --prefix=/software/easybuild --package-tool=fpm --package-prefix=easybuild-goolf-1.5.14 --packagepath=/export/easybuild/packages goolf-1.5.14.eb -dfr' - build
+
+easybuildgoolf1720:
+    image: easybuild-fpm
+    volumes:
+        - ./export:/export/easybuild
+        - ./develop:/software/easybuild-develop
+    user: root
+    command: su -l -c 'ml load Ruby-FPM && eb --sourcepath=/export/easybuild/sources --download-timeout=60 --prefix=/software/easybuild --package-tool=fpm --package-prefix=easybuild-goolf-1.7.20 --packagepath=/export/easybuild/packages goolf-1.7.20.eb -dfr' - build
